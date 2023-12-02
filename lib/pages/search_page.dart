@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/bottom_bar.dart';
 
 class SearchPage extends StatelessWidget {
   const SearchPage({Key? key}) : super(key: key);
@@ -7,10 +6,7 @@ class SearchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 29, 34, 73),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(29, 34, 73, 100),
-        centerTitle: true,
         title: const Text(
           'Search',
           style: TextStyle(
@@ -18,15 +14,86 @@ class SearchPage extends StatelessWidget {
             color: Color.fromARGB(255, 176, 137, 0),
           ),
         ),
-        iconTheme: const IconThemeData(
-          color: Color.fromARGB(255, 176, 137, 0),
+      ),
+      body: Container(
+        color: const Color.fromARGB(255, 29, 34, 73), // background color
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 35, 39, 48), // search bar color
+                borderRadius: BorderRadius.circular(10.0),
+                border: Border.all(
+                  color: const Color.fromARGB(255, 53, 61, 131),
+                  width: 4.0,
+                ), // outline color
+              ),
+              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
+              child: TextFormField(
+                decoration: const InputDecoration(
+                  hintText: 'Search for songs...',
+                  hintStyle: TextStyle(color: Colors.white),
+                  prefixIcon: Icon(Icons.search, color: Colors.white),
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 50.0),
+
+            const PlaylistContainer(
+              title: 'Playlist 1',
+              backgroundColor: Colors.white,
+            ),
+            const SizedBox(height: 25.0),
+            const PlaylistContainer(
+              title: 'Playlist 2',
+              backgroundColor: Colors.white,
+            ),
+            const SizedBox(height: 25.0),
+            const PlaylistContainer(
+              title: 'Playlist 3',
+              backgroundColor: Colors.white,
+            ),
+          ],
         ),
       ),
-      body: const Center(
-        child: Text(
-          'Search Page',
-          style: TextStyle(fontSize: 24, color: Color.fromARGB(255, 176, 137, 0)),
-        ),
+    );
+  }
+}
+
+class PlaylistContainer extends StatelessWidget {
+  final String title;
+  final Color backgroundColor;
+
+  const PlaylistContainer({
+    Key? key,
+    required this.title,
+    required this.backgroundColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: backgroundColor,
+        borderRadius: BorderRadius.circular(8.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 18.0,
+            ),
+          ),
+          const SizedBox(height: 8.0),
+        ],
       ),
     );
   }

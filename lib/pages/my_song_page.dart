@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../widgets/bottom_bar.dart';
 
 class MySongPage extends StatelessWidget {
   const MySongPage({Key? key}) : super(key: key);

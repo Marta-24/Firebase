@@ -11,7 +11,10 @@ class MusicApp extends StatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
 
+  const MusicApp({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _MusicAppState createState() => _MusicAppState();
 }
 
