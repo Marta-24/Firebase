@@ -7,7 +7,7 @@ class MySongPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: const Color.fromARGB(29, 34, 73, 100),
         centerTitle: true,
         title: const Text(
           'My Songs',

@@ -11,7 +11,7 @@ class MusicCard extends StatelessWidget {
     return Container(
       height: 220,
       width: 180,
-      color: Colors.white,
+      color: const Color.fromARGB(29, 34, 73, 100),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

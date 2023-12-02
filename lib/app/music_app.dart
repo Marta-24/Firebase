@@ -80,21 +80,26 @@ class MusicApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.white,
+          backgroundColor: Colors.transparent,
+          elevation: 0,
           title: Row(children: [
             IconButton(
-              icon: const Icon(Icons.dehaze, color: Colors.black),
+              icon: const Icon(Icons.dehaze, color: Colors.white),
               onPressed: () {},
             ),
           ]),
         ),
-        body: ListView(
+        body: Column(
           children: [
-            SectionWidget(title: 'Trending', musicList: trendingMusic),
-            SectionWidget(title: 'Recent', musicList: recentMusic),
-            // Commenting out the artist section for now
-            // SectionWidget(title: 'Artist', musicList: artistMusic),
-          ],
+            Container(
+              color: const Color.fromARGB(255, 29, 34, 73),
+              child: SectionWidget(title: 'Trending', musicList: trendingMusic),
+            ),
+            Container(
+              color: const Color.fromARGB(255, 29, 34, 73),
+              child: SectionWidget(title: 'Recent', musicList: trendingMusic),
+            )
+          ]
         ),
         bottomNavigationBar: BottomNavigationBar(
           unselectedItemColor: Colors.grey[500],
