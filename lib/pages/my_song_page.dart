@@ -6,76 +6,27 @@ class MySongPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 29, 34, 73), // Set background color
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(29, 34, 73, 100),
         centerTitle: true,
         title: const Text(
-          'My Songs',
+          'My Song',
           style: TextStyle(
             fontSize: 24,
-            color: Colors.black,
+            color: Color.fromARGB(255, 176, 137, 0),
           ),
         ),
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Color.fromARGB(255, 176, 137, 0),
         ),
       ),
-      body: ListView.builder(
-        itemCount: 12,
-        itemBuilder: (BuildContext context, int index) {
-          return Container(
-            height: 80,
-            color: Colors.white,
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            child: Row(
-              children: [
-                // Album Cover
-                Container(
-                  width: 80,
-                  height: 80,
-                  decoration: const BoxDecoration(
-                    image: DecorationImage(
-                      image:
-                          NetworkImage("https://example.com/album_cover.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 10),
-                // Song and Artist Information
-                Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Song Name $index',
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.black,
-                        ),
-                      ),
-                      Text(
-                        'Artist Name $index',
-                        style: const TextStyle(
-                          fontSize: 14,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(width: 10),
-                // Play Button
-                IconButton(
-                  icon:
-                      const Icon(Icons.play_circle_filled, color: Colors.black),
-                  onPressed: () {},
-                ),
-              ],
-            ),
-          );
-        },
+      body: const Center(
+        child: Text(
+          'My Songs Page',
+          style: TextStyle(fontSize: 24, 
+          color: Color.fromARGB(255, 176, 137, 0),),
+        ),
       ),
     );
   }

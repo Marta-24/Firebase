@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 
-class CategoriesPage extends StatelessWidget {
-  const CategoriesPage({super.key});
+class PlaylistPage extends StatelessWidget {
+  const PlaylistPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 29, 34, 73),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(29, 34, 73, 100),
         centerTitle: true,
         title: const Text(
-          'Categories',
+          'Playlist',
           style: TextStyle(
             fontSize: 24,
-            color: Colors.black,
+            color: Color.fromARGB(255, 176, 137, 0),
           ),
         ),
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Color.fromARGB(255, 176, 137, 0),
         ),
       ),
       body: const Center(
         child: Text(
-          'Categories Page',
-          style: TextStyle(fontSize: 24),
+          'Playlists Page',
+          style: TextStyle(fontSize: 24, color: Color.fromARGB(255, 176, 137, 0)),
         ),
       ),
     );

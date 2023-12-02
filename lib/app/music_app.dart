@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/section_widget.dart';
 import '../models/music.dart';
 import '../pages/search_page.dart';
-import '../pages/categories_page.dart';
+import '../pages/playlist_page.dart';
 import '../pages/my_song_page.dart';
 import '../pages/more_page.dart';
 
@@ -56,7 +56,6 @@ class MusicApp extends StatelessWidget {
     ),
   ];
 
-  // Placeholder list for artist music
   final List<Music> artistMusic = [
     Music(
       title: "Artist Song 1",
@@ -68,7 +67,7 @@ class MusicApp extends StatelessWidget {
       artist: "Artist Name",
       coverImageAssets: "lib/assets/images/ArtistSong2.jpg",
     ),
-    // Add more placeholder songs as needed
+
   ];
 
   MusicApp({Key? key}) : super(key: key);
@@ -76,11 +75,16 @@ class MusicApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color.fromARGB(255, 29, 34, 73),
+        )
+      ),
       navigatorKey: MusicApp.navigatorKey,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: const Color.fromARGB(255, 29, 34, 73),
           elevation: 0,
           title: Row(children: [
             IconButton(
@@ -89,26 +93,24 @@ class MusicApp extends StatelessWidget {
             ),
           ]),
         ),
-        body: Column(
+        body: Container(
+        color: const Color.fromARGB(255, 29, 34, 73),
+        child: Column(
           children: [
-            Container(
-              color: const Color.fromARGB(255, 29, 34, 73),
-              child: SectionWidget(title: 'Trending', musicList: trendingMusic),
-            ),
-            Container(
-              color: const Color.fromARGB(255, 29, 34, 73),
-              child: SectionWidget(title: 'Recent', musicList: trendingMusic),
-            )
-          ]
+            SectionWidget(title: 'Trending', musicList: trendingMusic),
+            SectionWidget(title: 'Recent', musicList: recentMusic),
+          ],
         ),
+      ),
         bottomNavigationBar: BottomNavigationBar(
-          unselectedItemColor: Colors.grey[500],
-          selectedItemColor: Colors.grey[900],
+          backgroundColor: const Color.fromARGB(255, 53, 61, 131),
+          selectedItemColor: const Color.fromARGB(255, 247, 68, 78),
+          unselectedItemColor: const Color.fromARGB(255, 255, 128, 134),
           items: const [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
             BottomNavigationBarItem(
-                icon: Icon(Icons.dehaze), label: 'Categories'),
+                icon: Icon(Icons.dehaze), label: 'Playlist'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.favorite), label: 'My Songs'),
             BottomNavigationBarItem(
@@ -124,7 +126,7 @@ class MusicApp extends StatelessWidget {
               case 2:
                 MusicApp.navigatorKey.currentState!.push(
                   MaterialPageRoute(
-                      builder: (context) => const CategoriesPage()),
+                      builder: (context) => const PlaylistPage()),
                 );
                 break;
               case 3:

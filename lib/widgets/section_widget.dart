@@ -18,7 +18,8 @@ class SectionWidget extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Text(
             title,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, 
+            color: Color.fromARGB(255, 176, 137, 0),),
           ),
         ),
         SizedBox(

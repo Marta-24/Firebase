@@ -11,7 +11,7 @@ class MusicCard extends StatelessWidget {
     return Container(
       height: 220,
       width: 180,
-      color: const Color.fromARGB(29, 34, 73, 100),
+      color: const Color.fromARGB(255, 29, 34, 73),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -29,12 +29,16 @@ class MusicCard extends StatelessWidget {
           const SizedBox(height: 8),
           Text(
             music.title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,
+              color: Color.fromARGB(255, 176, 137, 0),
+            ),
             textAlign: TextAlign.center,
           ),
           Text(
             music.artist,
-            style: const TextStyle(fontSize: 14),
+            style: const TextStyle(fontSize: 14,
+            color: Color.fromARGB(255, 176, 137, 0),
+            ),
             textAlign: TextAlign.center,
           ),
         ],

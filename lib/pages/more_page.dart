@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
 class MorePage extends StatelessWidget {
-  const MorePage({super.key});
+  const MorePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 29, 34, 73), // Set background color
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(29, 34, 73, 100),
         centerTitle: true,
@@ -13,17 +14,17 @@ class MorePage extends StatelessWidget {
           'More',
           style: TextStyle(
             fontSize: 24,
-            color: Colors.black,
+            color: Color.fromARGB(255, 176, 137, 0),
           ),
         ),
         iconTheme: const IconThemeData(
-          color: Colors.black,
+          color: Color.fromARGB(255, 176, 137, 0),
         ),
       ),
       body: const Center(
         child: Text(
           'More Page',
-          style: TextStyle(fontSize: 24),
+          style: TextStyle(fontSize: 24, color: Color.fromARGB(255, 176, 137, 0)),
         ),
       ),
     );
