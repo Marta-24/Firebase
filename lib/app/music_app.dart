@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
-import '../widgets/section_widget.dart';
-import '../models/music.dart';
+import 'package:music_app/models/music.dart';
+import '../pages/home_page.dart';
 import '../pages/search_page.dart';
 import '../pages/playlist_page.dart';
 import '../pages/my_song_page.dart';
 import '../pages/more_page.dart';
+import '../widgets/bottom_bar.dart';
 
-class MusicApp extends StatelessWidget {
+class MusicApp extends StatefulWidget {
   static final GlobalKey<NavigatorState> navigatorKey =
       GlobalKey<NavigatorState>();
 
+  @override
+  _MusicAppState createState() => _MusicAppState();
+}
+
+class _MusicAppState extends State<MusicApp> {
   final List<Music> trendingMusic = [
     Music(
       title: "Violet Hill",
@@ -67,10 +73,16 @@ class MusicApp extends StatelessWidget {
       artist: "Artist Name",
       coverImageAssets: "lib/assets/images/ArtistSong2.jpg",
     ),
-
   ];
 
-  MusicApp({Key? key}) : super(key: key);
+  int _currentIndex = 0;
+
+  void _onTap(int index) {
+    MusicApp.navigatorKey.currentState?.popUntil((route) => route.isFirst);
+    setState(() {
+      _currentIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +90,7 @@ class MusicApp extends StatelessWidget {
       theme: ThemeData(
         appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromARGB(255, 29, 34, 73),
-        )
+        ),
       ),
       navigatorKey: MusicApp.navigatorKey,
       debugShowCheckedModeBanner: false,
@@ -86,67 +98,44 @@ class MusicApp extends StatelessWidget {
         appBar: AppBar(
           backgroundColor: const Color.fromARGB(255, 29, 34, 73),
           elevation: 0,
-          title: Row(children: [
-            IconButton(
-              icon: const Icon(Icons.dehaze, color: Colors.white),
-              onPressed: () {},
-            ),
-          ]),
+          title: Row(
+            children: [
+              IconButton(
+                icon: const Icon(Icons.dehaze, color: Colors.white),
+                onPressed: () {},
+              ),
+            ],
+          ),
         ),
-        body: Container(
-        color: const Color.fromARGB(255, 29, 34, 73),
-        child: Column(
-          children: [
-            SectionWidget(title: 'Trending', musicList: trendingMusic),
-            SectionWidget(title: 'Recent', musicList: recentMusic),
-          ],
-        ),
-      ),
-        bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: const Color.fromARGB(255, 53, 61, 131),
-          selectedItemColor: const Color.fromARGB(255, 247, 68, 78),
-          unselectedItemColor: const Color.fromARGB(255, 255, 128, 134),
-          items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.dehaze), label: 'Playlist'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.favorite), label: 'My Songs'),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.more_horiz), label: 'More'),
-          ],
-          onTap: (int index) {
-            switch (index) {
-              case 1:
-                MusicApp.navigatorKey.currentState!.push(
-                  MaterialPageRoute(builder: (context) => const SearchPage()),
-                );
-                break;
-              case 2:
-                MusicApp.navigatorKey.currentState!.push(
-                  MaterialPageRoute(
-                      builder: (context) => const PlaylistPage()),
-                );
-                break;
-              case 3:
-                MusicApp.navigatorKey.currentState!.push(
-                  MaterialPageRoute(builder: (context) => const MySongPage()),
-                );
-                break;
-              case 4:
-                MusicApp.navigatorKey.currentState!.push(
-                  MaterialPageRoute(builder: (context) => const MorePage()),
-                );
-                break;
-            }
-          },
-          iconSize: 30,
-          selectedFontSize: 14,
-          unselectedFontSize: 12,
-          type: BottomNavigationBarType.fixed,
+        body: _getPage(_currentIndex),
+        bottomNavigationBar: BottomBar(
+          currentIndex: _currentIndex,
+          onTap: _onTap,
         ),
       ),
     );
+  }
+
+  Widget _getPage(int index) {
+    switch (index) {
+      case 0:
+        return HomePage(
+          trendingMusic: trendingMusic,
+          recentMusic: recentMusic,
+        );
+      case 1:
+        return SearchPage();
+      case 2:
+        return PlaylistPage();
+      case 3:
+        return MySongPage();
+      case 4:
+        return MorePage();
+      default:
+        return HomePage(
+          trendingMusic: trendingMusic,
+          recentMusic: recentMusic,
+        );
+    }
   }
 }
