@@ -5,7 +5,7 @@ import 'package:music_app/app/music_app.dart';
 void main() {
   testWidgets('MusicApp widget test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MusicApp());
+    await tester.pumpWidget(const MusicApp());
 
     // Example: Verify that a widget with a specific key exists
     expect(find.byKey(const Key('your_widget_key')), findsOneWidget);

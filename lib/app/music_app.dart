@@ -127,13 +127,13 @@ class _MusicAppState extends State<MusicApp> {
           recentMusic: recentMusic,
         );
       case 1:
-        return SearchPage();
+        return const SearchPage();
       case 2:
-        return PlaylistPage();
+        return const PlaylistPage();
       case 3:
-        return MySongPage();
+        return const MySongPage();
       case 4:
-        return MorePage();
+        return const MorePage();
       default:
         return HomePage(
           trendingMusic: trendingMusic,
