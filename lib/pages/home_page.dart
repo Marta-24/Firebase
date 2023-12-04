@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/section_widget.dart';
 import '../models/music.dart';
+import '../pages/song_page.dart';
 
 class HomePage extends StatelessWidget {
   final List<Music> trendingMusic;
@@ -18,10 +19,40 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        SectionWidget(title: 'Trending', musicList: trendingMusic),
-        SectionWidget(title: 'Recent', musicList: recentMusic),
-        SectionWidget(title: 'Artist', musicList: artistMusic),
+        SectionWidget(
+          title: 'Trending',
+          musicList: trendingMusic,
+          onSongTap: (Music music) {
+            _navigateToSongPage(context, music);
+          },
+        ),
+        SectionWidget(
+          title: 'Recent',
+          musicList: recentMusic,
+          onSongTap: (Music music) {
+            _navigateToSongPage(context, music);
+          },
+        ),
+        SectionWidget(
+          title: 'Artist',
+          musicList: artistMusic,
+          onSongTap: (Music music) {
+            _navigateToSongPage(context, music);
+          },
+        ),
       ],
+    );
+  }
+
+  void _navigateToSongPage(BuildContext context, Music music) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SongPage(
+          title: music.title,
+          artist: music.artist,
+        ),
+      ),
     );
   }
 }

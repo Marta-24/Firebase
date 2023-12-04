@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import '../models/music.dart';
-import 'music_card.dart';
+import '../widgets/music_card.dart';
 
 class SectionWidget extends StatelessWidget {
   final String title;
   final List<Music> musicList;
+  final Function(Music) onSongTap;
 
   const SectionWidget({
     Key? key,
     required this.title,
     required this.musicList,
+    required this.onSongTap,
   }) : super(key: key);
 
   @override
@@ -34,9 +36,12 @@ class SectionWidget extends StatelessWidget {
             itemCount: musicList.length,
             itemBuilder: (context, index) {
               final music = musicList[index];
-              return MusicCard(
-                title: music.title,
-                artist: music.artist,
+              return GestureDetector(
+                onTap: () => onSongTap(music),
+                child: MusicCard(
+                  title: music.title,
+                  artist: music.artist,
+                ),
               );
             },
           ),
