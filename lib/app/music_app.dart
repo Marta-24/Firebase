@@ -19,64 +19,29 @@ class MusicApp extends StatefulWidget {
 }
 
 class _MusicAppState extends State<MusicApp> {
-  final List<Music> trendingMusic = [
-    Music(
-      title: "Violet Hill",
-      artist: "Coldplay",
-      coverImageAssets: "lib/assets/images/VioletHill.jpg",
+  final List<Music> trendingMusic = List.generate(
+    4,
+    (index) => Music(
+      title: "Song ${index + 1}",
+      artist: "Artist ${index + 1}",
     ),
-    Music(
-      title: "Ophelia",
-      artist: "Les Lumineers",
-      coverImageAssets: "lib/assets/images/Ophelia.jpg",
-    ),
-    Music(
-      title: "Ghost Of You",
-      artist: "5 Seconds of Summer",
-      coverImageAssets: "lib/assets/images/GhostOfYou.jpg",
-    ),
-    Music(
-      title: "Despair",
-      artist: "Leo.",
-      coverImageAssets: "lib/assets/images/Despair.jpg",
-    ),
-  ];
+  );
 
-  final List<Music> recentMusic = [
-    Music(
-      title: "In Between",
-      artist: "James Marriott",
-      coverImageAssets: "lib/assets/images/AreYouThereYet.jpg",
+  final List<Music> recentMusic = List.generate(
+    4,
+    (index) => Music(
+      title: "Song ${index + 5}",
+      artist: "Artist ${index + 5}",
     ),
-    Music(
-      title: "Killing Me",
-      artist: "Conan Gray",
-      coverImageAssets: "lib/assets/images/KillingMe.jpg",
-    ),
-    Music(
-      title: "Normal People Things",
-      artist: "Lovejoy",
-      coverImageAssets: "lib/assets/images/NormalPeopleThings.jpg",
-    ),
-    Music(
-      title: "Nobody",
-      artist: "Mitski",
-      coverImageAssets: "lib/assets/images/Nobody.jpg",
-    ),
-  ];
+  );
 
-  final List<Music> artistMusic = [
-    Music(
-      title: "Artist Song 1",
-      artist: "Artist Name",
-      coverImageAssets: "lib/assets/images/ArtistSong1.jpg",
+  final List<Music> artistMusic = List.generate(
+    2,
+    (index) => Music(
+      title: "Song ${index + 1}",
+      artist: "Artist",
     ),
-    Music(
-      title: "Artist Song 2",
-      artist: "Artist Name",
-      coverImageAssets: "lib/assets/images/ArtistSong2.jpg",
-    ),
-  ];
+  );
 
   int _currentIndex = 0;
 
@@ -110,7 +75,10 @@ class _MusicAppState extends State<MusicApp> {
             ],
           ),
         ),
-        body: _getPage(_currentIndex),
+        body: Container(
+          color: const Color.fromARGB(255, 29, 34, 73),
+          child: _getPage(_currentIndex),
+        ),
         bottomNavigationBar: BottomBar(
           currentIndex: _currentIndex,
           onTap: _onTap,
@@ -125,6 +93,7 @@ class _MusicAppState extends State<MusicApp> {
         return HomePage(
           trendingMusic: trendingMusic,
           recentMusic: recentMusic,
+          artistMusic: artistMusic,
         );
       case 1:
         return const SearchPage();
@@ -138,6 +107,7 @@ class _MusicAppState extends State<MusicApp> {
         return HomePage(
           trendingMusic: trendingMusic,
           recentMusic: recentMusic,
+          artistMusic: artistMusic,
         );
     }
   }

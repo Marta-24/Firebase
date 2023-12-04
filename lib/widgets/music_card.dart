@@ -1,45 +1,48 @@
 import 'package:flutter/material.dart';
-import '../models/music.dart';
 
 class MusicCard extends StatelessWidget {
-  final Music music;
+  final String title;
+  final String artist;
 
-  const MusicCard({Key? key, required this.music}) : super(key: key);
+  const MusicCard({
+    Key? key,
+    required this.title,
+    required this.artist,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 220,
-      width: 180,
-      color: const Color.fromARGB(255, 29, 34, 73),
+      margin: const EdgeInsets.all(8.0),
+      width: 150.0,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.0),
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            height: 130,
-            width: 130,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: NetworkImage(music.coverImageAssets),
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(15.0),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  artist,
+                  style: const TextStyle(
+                    fontSize: 12.0,
+                    color: Colors.grey,
+                  ),
+                ),
+              ],
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            music.title,
-            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 176, 137, 0),
-            ),
-            textAlign: TextAlign.center,
-          ),
-          Text(
-            music.artist,
-            style: const TextStyle(fontSize: 14,
-            color: Color.fromARGB(255, 176, 137, 0),
-            ),
-            textAlign: TextAlign.center,
           ),
         ],
       ),

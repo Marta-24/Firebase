@@ -6,8 +6,11 @@ class SectionWidget extends StatelessWidget {
   final String title;
   final List<Music> musicList;
 
-  const SectionWidget(
-      {super.key, required this.title, required this.musicList});
+  const SectionWidget({
+    Key? key,
+    required this.title,
+    required this.musicList,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,22 +18,25 @@ class SectionWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Text(
             title,
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, 
-            color: Color.fromARGB(255, 176, 137, 0),),
+            style: const TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ),
         SizedBox(
-          height: 200,
+          height: 200.0,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: musicList.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: MusicCard(music: musicList[index]),
+            itemBuilder: (context, index) {
+              final music = musicList[index];
+              return MusicCard(
+                title: music.title,
+                artist: music.artist,
               );
             },
           ),

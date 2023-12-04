@@ -16,19 +16,19 @@ class SearchPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        color: const Color.fromARGB(255, 29, 34, 73), // background color
+        color: const Color.fromARGB(255, 29, 34, 73),
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 35, 39, 48), // search bar color
+                color: const Color.fromARGB(255, 35, 39, 48),
                 borderRadius: BorderRadius.circular(10.0),
                 border: Border.all(
                   color: const Color.fromARGB(255, 53, 61, 131),
                   width: 4.0,
-                ), // outline color
+                ),
               ),
               padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
               child: TextFormField(

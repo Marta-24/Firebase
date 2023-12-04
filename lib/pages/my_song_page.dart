@@ -32,16 +32,9 @@ class MySongPage extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                 child: Row(
                   children: [
-                    Container(
+                    const SizedBox(
                       width: 80,
                       height: 80,
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                              "https://example.com/album_cover.jpg"),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
                     ),
                     const SizedBox(width: 10),
                     Expanded(

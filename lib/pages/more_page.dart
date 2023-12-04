@@ -7,7 +7,7 @@ class MorePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 29, 34, 73), // Set background color
+      backgroundColor: const Color.fromARGB(255, 29, 34, 73),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(29, 34, 73, 100),
         centerTitle: true,
