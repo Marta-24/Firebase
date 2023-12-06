@@ -21,6 +21,7 @@ class BottomBar extends StatelessWidget {
         BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
         BottomNavigationBarItem(icon: Icon(Icons.dehaze), label: 'Playlist'),
         BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'My Songs'),
+        BottomNavigationBarItem(icon: Icon(Icons.music_note), label: 'Songs'),
         BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: 'More'),
       ],
       onTap: onTap,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:music_app/models/music.dart';
+import 'package:music_app/pages/song_page.dart';
 import '../pages/home_page.dart';
 import '../pages/search_page.dart';
 import '../pages/playlist_page.dart';
@@ -102,6 +103,8 @@ class _MusicAppState extends State<MusicApp> {
       case 3:
         return const MySongPage();
       case 4:
+        return const SongPage(title: '', artist: '',);
+      case 5:
         return const MorePage();
       default:
         return HomePage(

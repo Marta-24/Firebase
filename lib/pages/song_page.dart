@@ -100,28 +100,6 @@ class SongPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(
-  currentIndex: 3, // Assuming 3 is the index for 'My Songs'
-  onTap: (index) {
-    switch (index) {
-      case 0:
-        Navigator.of(context).pushReplacementNamed('/');
-        break;
-      case 1:
-        Navigator.of(context).pushReplacementNamed('/search');
-        break;
-      case 2:
-        Navigator.of(context).pushReplacementNamed('/playlist');
-        break;
-      case 3:
-        // No need to navigate to the same page, but you can handle it differently if needed
-        break;
-      case 4:
-        Navigator.of(context).pushReplacementNamed('/more');
-        break;
-    }
-  },
-),
     );
   }
 }
