@@ -51,6 +51,19 @@ class _MusicAppState extends State<MusicApp> {
     setState(() {
       _currentIndex = index;
     });
+
+    // Always show SongPage, even with default values
+    if (index == 4) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => SongPage(
+            title: "Default Song",
+            artist: "Default Artist",
+          ),
+        ),
+      );
+    }
   }
 
   @override
@@ -80,10 +93,12 @@ class _MusicAppState extends State<MusicApp> {
           color: const Color.fromARGB(255, 29, 34, 73),
           child: _getPage(_currentIndex),
         ),
-        bottomNavigationBar: BottomBar(
-          currentIndex: _currentIndex,
-          onTap: _onTap,
-        ),
+        bottomNavigationBar: _currentIndex == 4
+            ? null
+            : BottomBar(
+                currentIndex: _currentIndex,
+                onTap: _onTap,
+              ),
       ),
     );
   }
@@ -103,7 +118,10 @@ class _MusicAppState extends State<MusicApp> {
       case 3:
         return const MySongPage();
       case 4:
-        return const SongPage(title: '', artist: '',);
+        return const SongPage(
+          title: "Default Song",
+          artist: "Default Artist",
+        );
       case 5:
         return const MorePage();
       default:

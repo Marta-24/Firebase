@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/widgets/bottom_bar.dart';
+import '../widgets/bottom_bar.dart';
 
 class SongPage extends StatelessWidget {
   final String title;
@@ -22,6 +22,7 @@ class SongPage extends StatelessWidget {
             color: Colors.white,
           ),
         ),
+        centerTitle: true,
       ),
       backgroundColor: const Color.fromARGB(255, 29, 34, 73),
       body: Center(
@@ -79,7 +80,7 @@ class SongPage extends StatelessWidget {
                     width: 25.0,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: Colors.white, 
+                      color: Colors.white,
                     ),
                   ),
                   // RIGHT LINE
@@ -99,6 +100,10 @@ class SongPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+      bottomNavigationBar: BottomBar(
+        currentIndex: 4, // Set the current index for the SongPage
+        onTap: (index) {}, // Handle onTap if needed
       ),
     );
   }

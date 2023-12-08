@@ -6,12 +6,14 @@ class SectionWidget extends StatelessWidget {
   final String title;
   final List<Music> musicList;
   final Function(Music) onSongTap;
+  final Color titleColor; // Add this line
 
   const SectionWidget({
     Key? key,
     required this.title,
     required this.musicList,
     required this.onSongTap,
+    required this.titleColor,
   }) : super(key: key);
 
   @override
@@ -23,9 +25,10 @@ class SectionWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
           child: Text(
             title,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 18.0,
               fontWeight: FontWeight.bold,
+              color: titleColor,
             ),
           ),
         ),

@@ -16,21 +16,27 @@ class MusicCard extends StatelessWidget {
       margin: const EdgeInsets.all(8.0),
       width: 150.0,
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          Container(
+            height: 100.0,
+            width: 100.0,
+            color: Colors.red[500],
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
                   title,
                   style: const TextStyle(
                     fontSize: 14.0,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -38,7 +44,7 @@ class MusicCard extends StatelessWidget {
                   artist,
                   style: const TextStyle(
                     fontSize: 12.0,
-                    color: Colors.grey,
+                    color: Colors.white,
                   ),
                 ),
               ],

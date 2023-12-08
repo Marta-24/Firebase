@@ -25,6 +25,7 @@ class HomePage extends StatelessWidget {
           onSongTap: (Music music) {
             _navigateToSongPage(context, music);
           },
+          titleColor: const Color.fromARGB(255, 176, 137, 0),
         ),
         SectionWidget(
           title: 'Recent',
@@ -32,6 +33,7 @@ class HomePage extends StatelessWidget {
           onSongTap: (Music music) {
             _navigateToSongPage(context, music);
           },
+          titleColor: const Color.fromARGB(255, 176, 137, 0),
         ),
         SectionWidget(
           title: 'Artist',
@@ -39,6 +41,7 @@ class HomePage extends StatelessWidget {
           onSongTap: (Music music) {
             _navigateToSongPage(context, music);
           },
+          titleColor: Colors.amber,
         ),
       ],
     );
