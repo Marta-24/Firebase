@@ -101,10 +101,6 @@ class SongPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: BottomBar(
-        currentIndex: 4, // Set the current index for the SongPage
-        onTap: (index) {}, // Handle onTap if needed
-      ),
     );
   }
 }

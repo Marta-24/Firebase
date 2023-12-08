@@ -15,7 +15,6 @@ class MusicApp extends StatefulWidget {
   const MusicApp({super.key});
 
   @override
-  // ignore: library_private_types_in_public_api
   _MusicAppState createState() => _MusicAppState();
 }
 
@@ -51,19 +50,6 @@ class _MusicAppState extends State<MusicApp> {
     setState(() {
       _currentIndex = index;
     });
-
-    // Always show SongPage, even with default values
-    if (index == 4) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => SongPage(
-            title: "Default Song",
-            artist: "Default Artist",
-          ),
-        ),
-      );
-    }
   }
 
   @override
@@ -93,12 +79,10 @@ class _MusicAppState extends State<MusicApp> {
           color: const Color.fromARGB(255, 29, 34, 73),
           child: _getPage(_currentIndex),
         ),
-        bottomNavigationBar: _currentIndex == 4
-            ? null
-            : BottomBar(
-                currentIndex: _currentIndex,
-                onTap: _onTap,
-              ),
+        bottomNavigationBar: BottomBar(
+          currentIndex: _currentIndex,
+          onTap: _onTap,
+        ),
       ),
     );
   }
@@ -119,8 +103,8 @@ class _MusicAppState extends State<MusicApp> {
         return const MySongPage();
       case 4:
         return const SongPage(
-          title: "Default Song",
-          artist: "Default Artist",
+          title: '',
+          artist: '',
         );
       case 5:
         return const MorePage();
