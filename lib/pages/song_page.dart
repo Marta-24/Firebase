@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-//import '../widgets/bottom_bar.dart';
 
 class SongPage extends StatefulWidget {
   final String title;
   final String artist;
+  final String lyrics;
 
   const SongPage({
     Key? key,
     required this.title,
     required this.artist,
+    required this.lyrics,
   }) : super(key: key);
 
   @override
@@ -100,7 +101,15 @@ class _SongPageState extends State<SongPage> {
                   const Icon(Icons.add, color: Colors.white),
                 ],
               ),
-              // ... other widgets
+              const SizedBox(height: 16.0),
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Text(
+                    widget.lyrics.isEmpty ? 'Lyrics not available' : widget.lyrics,
+                    style: const TextStyle(fontSize: 16.0, color: Colors.white),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

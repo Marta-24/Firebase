@@ -1,99 +1,59 @@
 import 'package:flutter/material.dart';
+import '../app/lyrics_service.dart';
+import 'song_page.dart';
 
-class SearchPage extends StatelessWidget {
-  const SearchPage({Key? key}) : super(key: key);
+class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Search',
-          style: TextStyle(
-            fontSize: 24,
-            color: Color.fromARGB(255, 176, 137, 0),
-          ),
-        ),
-      ),
-      body: Container(
-        color: const Color.fromARGB(255, 29, 34, 73),
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 35, 39, 48),
-                borderRadius: BorderRadius.circular(10.0),
-                border: Border.all(
-                  color: const Color.fromARGB(255, 53, 61, 131),
-                  width: 4.0,
-                ),
-              ),
-              padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
-              child: TextFormField(
-                decoration: const InputDecoration(
-                  hintText: 'Search for songs...',
-                  hintStyle: TextStyle(color: Colors.white),
-                  prefixIcon: Icon(Icons.search, color: Colors.white),
-                  border: InputBorder.none,
-                ),
-              ),
-            ),
+  // ignore: library_private_types_in_public_api
+  _SearchPageState createState() => _SearchPageState();
+}
 
-            const SizedBox(height: 50.0),
+class _SearchPageState extends State<SearchPage> {
+  final _artistController = TextEditingController();
+  final _songController = TextEditingController();
+  final _lyricsService = LyricsService();
 
-            const PlaylistContainer(
-              title: 'Playlist 1',
-              backgroundColor: Colors.white,
-            ),
-            const SizedBox(height: 25.0),
-            const PlaylistContainer(
-              title: 'Playlist 2',
-              backgroundColor: Colors.white,
-            ),
-            const SizedBox(height: 25.0),
-            const PlaylistContainer(
-              title: 'Playlist 3',
-              backgroundColor: Colors.white,
-            ),
-          ],
+  void _searchSong() async {
+    final lyrics = await _lyricsService.fetchLyrics(
+      _artistController.text,
+      _songController.text,
+    );
+    // ignore: use_build_context_synchronously
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => SongPage(
+          artist: _artistController.text,
+          title: _songController.text,
+          lyrics: lyrics,
         ),
       ),
     );
   }
-}
-
-class PlaylistContainer extends StatelessWidget {
-  final String title;
-  final Color backgroundColor;
-
-  const PlaylistContainer({
-    Key? key,
-    required this.title,
-    required this.backgroundColor,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: backgroundColor,
-        borderRadius: BorderRadius.circular(8.0),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 18.0,
+    return Scaffold(
+      appBar: AppBar(title: const Text('Search Song')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: <Widget>[
+            TextField(
+              controller: _artistController,
+              decoration: const InputDecoration(labelText: 'Artist'),
             ),
-          ),
-          const SizedBox(height: 8.0),
-        ],
+            TextField(
+              controller: _songController,
+              decoration: const InputDecoration(labelText: 'Song Title'),
+            ),
+            ElevatedButton(
+              onPressed: _searchSong,
+              child: const Text('Search'),
+            ),
+          ],
+        ),
       ),
     );
   }

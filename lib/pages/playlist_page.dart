@@ -1,7 +1,12 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class PlaylistPage extends StatefulWidget {
+  const PlaylistPage({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _PlaylistPageState createState() => _PlaylistPageState();
 }
 
@@ -74,8 +79,6 @@ class _PlaylistPageState extends State<PlaylistPage> {
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
-                                // Add your code here for what happens when you tap on the playlist
-                                print('Tapped on ${playlists[index]}');
                               },
                               child: Container(
                                 padding: EdgeInsets.all(16),

@@ -53,7 +53,7 @@ class HomePage extends StatelessWidget {
       MaterialPageRoute(
         builder: (context) => SongPage(
           title: music.title,
-          artist: music.artist,
+          artist: music.artist, lyrics: '',
         ),
       ),
     );
