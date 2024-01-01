@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import '../widgets/bottom_bar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+//import '../widgets/bottom_bar.dart';
 
-class SongPage extends StatelessWidget {
+class SongPage extends StatefulWidget {
   final String title;
   final String artist;
 
@@ -10,6 +11,34 @@ class SongPage extends StatelessWidget {
     required this.title,
     required this.artist,
   }) : super(key: key);
+
+  @override
+  _SongPageState createState() => _SongPageState();
+}
+
+class _SongPageState extends State<SongPage> {
+  bool isFavorite = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadFavoriteStatus();
+  }
+
+  Future<void> _loadFavoriteStatus() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isFavorite = prefs.getBool(widget.title) ?? false;
+    });
+  }
+
+  Future<void> _toggleFavorite() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isFavorite = !isFavorite;
+      prefs.setBool(widget.title, isFavorite);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +68,7 @@ class SongPage extends StatelessWidget {
               ),
               const SizedBox(height: 16.0),
               Text(
-                title,
+                widget.title,
                 style: const TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
@@ -48,55 +77,29 @@ class SongPage extends StatelessWidget {
               ),
               const SizedBox(height: 8.0),
               Text(
-                artist,
+                widget.artist,
                 style: const TextStyle(
                   fontSize: 18.0,
                   color: Colors.grey,
                 ),
               ),
               const SizedBox(height: 16.0),
-              const Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.menu, color: Colors.white),
-                  Icon(Icons.menu, color: Colors.white),
-                  Icon(Icons.menu, color: Colors.white),
-                  Icon(Icons.menu, color: Colors.white),
-                ],
-              ),
-              const SizedBox(height: 16.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  // LEFT LINE
-                  Container(
-                    height: 10.0,
-                    width: 150.0,
-                    color: Colors.red,
-                  ),
-                  // CIRCLE
-                  Container(
-                    height: 25.0,
-                    width: 25.0,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
+                  IconButton(
+                    icon: Icon(
+                      isFavorite ? Icons.favorite : Icons.favorite_border,
                       color: Colors.white,
                     ),
+                    onPressed: _toggleFavorite,
                   ),
-                  // RIGHT LINE
-                  Container(
-                    height: 10.0,
-                    width: 200.0,
-                    color: Colors.grey,
-                  ),
+                  const Icon(Icons.shuffle, color: Colors.white), 
+                  const Icon(Icons.replay, color: Colors.white),
+                  const Icon(Icons.add, color: Colors.white),
                 ],
               ),
-              const SizedBox(height: 16.0),
-              Container(
-                height: 100.0,
-                width: double.infinity,
-                color: Colors.grey,
-              ),
+              // ... other widgets
             ],
           ),
         ),
