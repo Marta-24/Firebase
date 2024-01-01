@@ -98,7 +98,7 @@ class _MusicAppState extends State<MusicApp> {
       case 1:
         return const SearchPage();
       case 2:
-        return const PlaylistPage();
+        return PlaylistPage();
       case 3:
         return const MySongPage();
       case 4:
