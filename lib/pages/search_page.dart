@@ -3,7 +3,7 @@ import '../app/lyrics_service.dart';
 import 'song_page.dart';
 
 class SearchPage extends StatefulWidget {
-  const SearchPage({super.key});
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -14,22 +14,47 @@ class _SearchPageState extends State<SearchPage> {
   final _artistController = TextEditingController();
   final _songController = TextEditingController();
   final _lyricsService = LyricsService();
+  bool _isLoading = false;
+  String _errorMessage = '';
 
   void _searchSong() async {
-    final lyrics = await _lyricsService.fetchLyrics(
-      _artistController.text,
-      _songController.text,
-    );
-    // ignore: use_build_context_synchronously
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => SongPage(
-          artist: _artistController.text,
-          title: _songController.text,
-          lyrics: lyrics,
+    setState(() {
+      _isLoading = true;
+      _errorMessage = '';
+    });
+
+    if (_artistController.text.isEmpty || _songController.text.isEmpty) {
+      setState(() {
+        _isLoading = false;
+        _errorMessage = 'Please enter both artist and song title';
+      });
+      return;
+    }
+
+    try {
+      final lyrics = await _lyricsService.fetchLyrics(
+        _artistController.text,
+        _songController.text,
+      );
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => SongPage(
+            artist: _artistController.text,
+            title: _songController.text,
+            lyrics: lyrics,
+          ),
         ),
-      ),
-    );
+      );
+    } catch (e) {
+      setState(() {
+        _errorMessage = 'Failed to load lyrics';
+      });
+    } finally {
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 
   @override
@@ -50,8 +75,18 @@ class _SearchPageState extends State<SearchPage> {
             ),
             ElevatedButton(
               onPressed: _searchSong,
-              child: const Text('Search'),
+              child: _isLoading
+                  ? const CircularProgressIndicator(color: Colors.white)
+                  : const Text('Search'),
             ),
+            if (_errorMessage.isNotEmpty)
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: Text(
+                  _errorMessage,
+                  style: const TextStyle(color: Colors.red),
+                ),
+              ),
           ],
         ),
       ),
