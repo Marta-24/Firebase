@@ -52,6 +52,46 @@ class _PlaylistPageState extends State<PlaylistPage> {
     );
   }
 
+  Future<void> _showEditPlaylistNameDialog(BuildContext context) async {
+    int index = 0; //playlists.lastIndexWhere((context) => false); <= TODO: figure out how to get last playlist index
+    String playlistName = '';
+
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text('Placeholder'), //Code note: TODO: change this for indexed text later
+          content: TextField(
+            onChanged: (value) {
+              playlistName = value;
+            },
+            decoration: const InputDecoration(hintText: "Enter playlist name"),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+            ),
+            TextButton(
+              child: const Text('Create'),
+              onPressed: () {
+                if (playlistName.isNotEmpty) {
+                  setState(() {
+                    //playlists[index] = playlistName; TODO: Find a way to get index, (trying to make this thing harmless for now)
+                  });
+                  Navigator.of(dialogContext).pop();
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,6 +141,14 @@ class _PlaylistPageState extends State<PlaylistPage> {
                                 playlists.removeAt(index);
                               });
                             },
+                          ),
+                           IconButton(
+                            icon: Icon(Icons.edit, color: Colors.red),
+                            onPressed: () {
+                              setState(() {
+                                _showEditPlaylistNameDialog(context);
+                              });
+                            }
                           ),
                         ],
                       );
