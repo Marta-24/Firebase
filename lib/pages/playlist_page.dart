@@ -53,7 +53,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
   }
 
   Future<void> _showEditPlaylistNameDialog(BuildContext context) async {
-    int index = 0; //playlists.lastIndexWhere((context) => false); <= TODO: figure out how to get last playlist index
+    //int index = 0; playlists.lastIndexWhere((context) => false); <= TODO: figure out how to get last playlist index
     String playlistName = '';
 
     return showDialog<void>(
@@ -61,7 +61,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
       barrierDismissible: false,
       builder: (BuildContext dialogContext) {
         return AlertDialog(
-          title: Text('Placeholder'), //Code note: TODO: change this for indexed text later
+          title: Text('Playlist Name'),
           content: TextField(
             onChanged: (value) {
               playlistName = value;
