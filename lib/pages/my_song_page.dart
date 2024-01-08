@@ -103,7 +103,9 @@ class _MySongPageState extends State<MySongPage> {
                           IconButton(
                             icon: const Icon(Icons.play_circle_filled,
                                 color: Color.fromARGB(255, 247, 68, 78)),
-                            onPressed: () {},
+                            onPressed: () {
+                              // Implement the logic to play the song here
+                            },
                           ),
                         ],
                       ),
