@@ -25,7 +25,7 @@ class MusicCard extends StatelessWidget {
           Container(
             height: 100.0,
             width: 100.0,
-            color: Colors.red[500],
+            color: Color.fromARGB(255, 188, 53, 116),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
