@@ -43,6 +43,7 @@ class _SearchPageState extends State<SearchPage> {
             artist: _artistController.text,
             title: _songController.text,
             lyrics: lyrics,
+            playlists: [],
           ),
         ),
       );

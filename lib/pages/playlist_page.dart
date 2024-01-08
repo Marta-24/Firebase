@@ -1,19 +1,16 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
 
 class PlaylistPage extends StatefulWidget {
-  const PlaylistPage({super.key});
+  const PlaylistPage({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _PlaylistPageState createState() => _PlaylistPageState();
 }
 
 class _PlaylistPageState extends State<PlaylistPage> {
-  List<String> playlists = []; // List to hold playlists
+  List<String> playlists = []; // List to hold playlist names
 
-  Future<void> _showAddPlaylistDialog(BuildContext context) async {
+  Future<void> _showAddPlaylistDialog() async {
     String playlistName = '';
 
     return showDialog<void>(
@@ -52,21 +49,22 @@ class _PlaylistPageState extends State<PlaylistPage> {
     );
   }
 
-  Future<void> _showEditPlaylistNameDialog(BuildContext context) async {
-    //int index = 0; playlists.lastIndexWhere((context) => false); <= TODO: figure out how to get last playlist index
-    String playlistName = '';
+  Future<void> _showEditPlaylistNameDialog(int index) async {
+    String playlistName = playlists[index];
 
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext dialogContext) {
         return AlertDialog(
-          title: Text('Playlist Name'),
+          title: const Text('Edit Playlist Name'),
           content: TextField(
             onChanged: (value) {
               playlistName = value;
             },
-            decoration: const InputDecoration(hintText: "Enter playlist name"),
+            controller: TextEditingController(text: playlistName),
+            decoration:
+                const InputDecoration(hintText: "Enter new playlist name"),
           ),
           actions: <Widget>[
             TextButton(
@@ -76,11 +74,11 @@ class _PlaylistPageState extends State<PlaylistPage> {
               },
             ),
             TextButton(
-              child: const Text('Create'),
+              child: const Text('Save'),
               onPressed: () {
                 if (playlistName.isNotEmpty) {
                   setState(() {
-                    //playlists[index] = playlistName; TODO: Find a way to get index, (trying to make this thing harmless for now)
+                    playlists[index] = playlistName;
                   });
                   Navigator.of(dialogContext).pop();
                 }
@@ -105,7 +103,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: ElevatedButton(
-              onPressed: () => _showAddPlaylistDialog(context),
+              onPressed: _showAddPlaylistDialog,
               child: const Text('Add Playlist'),
             ),
           ),
@@ -114,47 +112,38 @@ class _PlaylistPageState extends State<PlaylistPage> {
                 ? ListView.builder(
                     itemCount: playlists.length,
                     itemBuilder: (context, index) {
-                      return Row(
-                        children: [
-                          Expanded(
-                            child: GestureDetector(
-                              onTap: () {
-                              },
-                              child: Container(
-                                padding: EdgeInsets.all(16),
-                                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Text(
-                                  playlists[index],
-                                  style: TextStyle(color: Colors.black),
-                                ),
-                              ),
+                      return ListTile(
+                        title: Text(
+                          playlists[index],
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              icon: const Icon(Icons.edit, color: Colors.blue),
+                              onPressed: () =>
+                                  _showEditPlaylistNameDialog(index),
                             ),
-                          ),
-                          IconButton(
-                            icon: Icon(Icons.delete, color: Colors.red),
-                            onPressed: () {
-                              setState(() {
-                                playlists.removeAt(index);
-                              });
-                            },
-                          ),
-                           IconButton(
-                            icon: Icon(Icons.edit, color: Colors.red),
-                            onPressed: () {
-                              setState(() {
-                                _showEditPlaylistNameDialog(context);
-                              });
-                            }
-                          ),
-                        ],
+                            IconButton(
+                              icon: const Icon(Icons.delete, color: Colors.red),
+                              onPressed: () {
+                                setState(() {
+                                  playlists.removeAt(index);
+                                });
+                              },
+                            ),
+                          ],
+                        ),
                       );
                     },
                   )
-                : Center(child: Text("No playlists created yet.", style: TextStyle(color: Colors.white))),
+                : const Center(
+                    child: Text(
+                      "No playlists created yet.",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
           ),
         ],
       ),

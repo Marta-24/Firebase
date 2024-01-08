@@ -5,12 +5,14 @@ class SongPage extends StatefulWidget {
   final String title;
   final String artist;
   final String lyrics;
+  final List<String> playlists;
 
   const SongPage({
     Key? key,
     required this.title,
     required this.artist,
     required this.lyrics,
+    required this.playlists,
   }) : super(key: key);
 
   @override
@@ -41,6 +43,30 @@ class _SongPageState extends State<SongPage> {
     });
   }
 
+  void _addToPlaylist() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Add to Playlist'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: widget.playlists.map((playlist) {
+                return ListTile(
+                  title: Text(playlist),
+                  onTap: () {
+                    // TODO: Implement logic to add song to this playlist
+                    Navigator.of(context).pop();
+                  },
+                );
+              }).toList(),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,7 +91,7 @@ class _SongPageState extends State<SongPage> {
               Container(
                 height: 200.0,
                 width: 200.0,
-                color: Colors.yellow,
+                color: Colors.yellow, // Placeholder for album art
               ),
               const SizedBox(height: 16.0),
               Text(
@@ -95,16 +121,27 @@ class _SongPageState extends State<SongPage> {
                     ),
                     onPressed: _toggleFavorite,
                   ),
-                  const Icon(Icons.shuffle, color: Colors.white), 
-                  const Icon(Icons.replay, color: Colors.white),
-                  const Icon(Icons.add, color: Colors.white),
+                  IconButton(
+                    icon: const Icon(Icons.shuffle, color: Colors.white),
+                    onPressed: () {}, // Placeholder for shuffle functionality
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.replay, color: Colors.white),
+                    onPressed: () {}, // Placeholder for replay functionality
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.playlist_add, color: Colors.white),
+                    onPressed: _addToPlaylist,
+                  ),
                 ],
               ),
               const SizedBox(height: 16.0),
               Expanded(
                 child: SingleChildScrollView(
                   child: Text(
-                    widget.lyrics.isEmpty ? 'Lyrics not available' : widget.lyrics,
+                    widget.lyrics.isEmpty
+                        ? 'Lyrics not available'
+                        : widget.lyrics,
                     style: const TextStyle(fontSize: 16.0, color: Colors.white),
                   ),
                 ),

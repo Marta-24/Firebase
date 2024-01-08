@@ -4,7 +4,12 @@ import '../models/music.dart';
 import '../pages/song_page.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key, required List<Music> recentMusic, required List<Music> trendingMusic, required List<Music> artistMusic}) : super(key: key);
+  HomePage(
+      {Key? key,
+      required List<Music> recentMusic,
+      required List<Music> trendingMusic,
+      required List<Music> artistMusic})
+      : super(key: key);
 
   // Hardcoded lists of songs for each category
   final List<Music> trendingMusic = [
@@ -68,7 +73,7 @@ class HomePage extends StatelessWidget {
           title: music.title,
           artist: music.artist,
           // The lyrics are empty here; they should be fetched within the SongPage
-          lyrics: '',
+          lyrics: '', playlists: [],
         ),
       ),
     );
