@@ -1,4 +1,4 @@
-import 'music.dart'; // Assuming you have a Music model
+import 'music.dart';
 
 class Playlist {
   String name;

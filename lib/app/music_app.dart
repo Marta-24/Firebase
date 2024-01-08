@@ -110,7 +110,6 @@ class _MusicAppState extends State<MusicApp> {
           title: '',
           artist: '',
           lyrics: '',
-          playlists: [],
         );
       case 5:
         return const MorePage();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PlaylistPage extends StatefulWidget {
   const PlaylistPage({Key? key}) : super(key: key);
@@ -8,7 +9,25 @@ class PlaylistPage extends StatefulWidget {
 }
 
 class _PlaylistPageState extends State<PlaylistPage> {
-  List<String> playlists = []; // List to hold playlist names
+  List<String> playlists = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPlaylists();
+  }
+
+  Future<void> _loadPlaylists() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      playlists = prefs.getStringList('playlists') ?? [];
+    });
+  }
+
+  Future<void> _savePlaylists() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setStringList('playlists', playlists);
+  }
 
   Future<void> _showAddPlaylistDialog() async {
     String playlistName = '';
@@ -38,6 +57,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
                 if (playlistName.isNotEmpty) {
                   setState(() {
                     playlists.add(playlistName);
+                    _savePlaylists();
                   });
                   Navigator.of(dialogContext).pop();
                 }
@@ -79,6 +99,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
                 if (playlistName.isNotEmpty) {
                   setState(() {
                     playlists[index] = playlistName;
+                    _savePlaylists();
                   });
                   Navigator.of(dialogContext).pop();
                 }
@@ -130,6 +151,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
                               onPressed: () {
                                 setState(() {
                                   playlists.removeAt(index);
+                                  _savePlaylists();
                                 });
                               },
                             ),

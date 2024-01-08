@@ -6,8 +6,7 @@ class SectionWidget extends StatelessWidget {
   final String title;
   final List<Music> musicList;
   final Function(Music) onSongTap;
-  final Color titleColor; // Add this line
-
+  final Color titleColor;
   const SectionWidget({
     Key? key,
     required this.title,

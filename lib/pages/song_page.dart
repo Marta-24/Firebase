@@ -5,14 +5,12 @@ class SongPage extends StatefulWidget {
   final String title;
   final String artist;
   final String lyrics;
-  final List<String> playlists;
 
   const SongPage({
     Key? key,
     required this.title,
     required this.artist,
     required this.lyrics,
-    required this.playlists,
   }) : super(key: key);
 
   @override
@@ -43,7 +41,31 @@ class _SongPageState extends State<SongPage> {
     });
   }
 
-  void _addToPlaylist() {
+  Future<void> _addToPlaylist() async {
+    final prefs = await SharedPreferences.getInstance();
+    final playlists = prefs.getStringList('playlists') ?? [];
+
+    if (playlists.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('No Playlists Available'),
+            content: Text('You do not have any playlists to add this song to.'),
+            actions: <Widget>[
+              TextButton(
+                child: Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+      return;
+    }
+
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -51,11 +73,10 @@ class _SongPageState extends State<SongPage> {
           title: Text('Add to Playlist'),
           content: SingleChildScrollView(
             child: ListBody(
-              children: widget.playlists.map((playlist) {
+              children: playlists.map((playlist) {
                 return ListTile(
                   title: Text(playlist),
                   onTap: () {
-                    // TODO: Implement logic to add song to this playlist
                     Navigator.of(context).pop();
                   },
                 );
@@ -72,9 +93,9 @@ class _SongPageState extends State<SongPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 29, 34, 73),
-        title: Text(
+        title: const Text(
           'Now Playing',
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
           ),
         ),
@@ -91,7 +112,7 @@ class _SongPageState extends State<SongPage> {
               Container(
                 height: 200.0,
                 width: 200.0,
-                color: Colors.yellow, // Placeholder for album art
+                color: Colors.yellow,
               ),
               const SizedBox(height: 16.0),
               Text(
@@ -123,11 +144,11 @@ class _SongPageState extends State<SongPage> {
                   ),
                   IconButton(
                     icon: const Icon(Icons.shuffle, color: Colors.white),
-                    onPressed: () {}, // Placeholder for shuffle functionality
+                    onPressed: () {},
                   ),
                   IconButton(
                     icon: const Icon(Icons.replay, color: Colors.white),
-                    onPressed: () {}, // Placeholder for replay functionality
+                    onPressed: () {},
                   ),
                   IconButton(
                     icon: const Icon(Icons.playlist_add, color: Colors.white),

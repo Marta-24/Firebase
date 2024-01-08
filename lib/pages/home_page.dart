@@ -11,7 +11,6 @@ class HomePage extends StatelessWidget {
       required List<Music> artistMusic})
       : super(key: key);
 
-  // Hardcoded lists of songs for each category
   final List<Music> trendingMusic = [
     Music(title: "Shape of You", artist: "Ed Sheeran", lyrics: ""),
     Music(title: "Blinding Lights", artist: "The Weeknd", lyrics: ""),
@@ -72,8 +71,7 @@ class HomePage extends StatelessWidget {
         builder: (context) => SongPage(
           title: music.title,
           artist: music.artist,
-          // The lyrics are empty here; they should be fetched within the SongPage
-          lyrics: '', playlists: [],
+          lyrics: '',
         ),
       ),
     );

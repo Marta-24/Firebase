@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/music.dart'; // Import your Music model
+import '../models/music.dart';
 
 class MySongPage extends StatefulWidget {
   const MySongPage({Key? key}) : super(key: key);
@@ -20,12 +20,11 @@ class _MySongPageState extends State<MySongPage> {
 
   Future<List<Music>> _fetchFavoriteSongs() async {
     final prefs = await SharedPreferences.getInstance();
-    // Assuming all your song titles are stored in SharedPreferences
-    // You might need a more sophisticated way to handle this
     List<Music> favoriteSongs = [];
     prefs.getKeys().forEach((key) {
       if (prefs.getBool(key) == true) {
-        favoriteSongs.add(Music(title: key, artist: "Artist for $key", lyrics: '')); // Update this accordingly
+        favoriteSongs
+            .add(Music(title: key, artist: "Artist for $key", lyrics: ''));
       }
     });
     return favoriteSongs;
@@ -68,7 +67,8 @@ class _MySongPageState extends State<MySongPage> {
                     Container(
                       height: 80,
                       color: const Color.fromARGB(255, 29, 34, 73),
-                      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 5, horizontal: 10),
                       child: Row(
                         children: [
                           const SizedBox(
@@ -103,7 +103,7 @@ class _MySongPageState extends State<MySongPage> {
                           IconButton(
                             icon: const Icon(Icons.play_circle_filled,
                                 color: Color.fromARGB(255, 247, 68, 78)),
-                            onPressed: () {}, // Add your play logic here
+                            onPressed: () {},
                           ),
                         ],
                       ),
