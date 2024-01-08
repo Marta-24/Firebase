@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../models/music.dart';
+import '../pages/song_page.dart';
 
 class MySongPage extends StatefulWidget {
   const MySongPage({Key? key}) : super(key: key);
@@ -28,6 +29,18 @@ class _MySongPageState extends State<MySongPage> {
       }
     });
     return favoriteSongs;
+  }
+
+  void _playSong(Music music) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => SongPage(
+          title: music.title ?? "Unknown Title",
+          artist: music.artist ?? "Unknown Artist",
+          lyrics: music.lyrics ?? "",
+        ),
+      ),
+    );
   }
 
   @override
@@ -64,50 +77,51 @@ class _MySongPageState extends State<MySongPage> {
                 Music music = snapshot.data![index];
                 return Column(
                   children: [
-                    Container(
-                      height: 80,
-                      color: const Color.fromARGB(255, 29, 34, 73),
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 5, horizontal: 10),
-                      child: Row(
-                        children: [
-                          const SizedBox(
-                            width: 80,
-                            height: 80,
-                          ),
-                          const SizedBox(width: 10),
-                          Expanded(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  music.title,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    color: Color.fromARGB(255, 176, 137, 0),
-                                  ),
-                                ),
-                                Text(
-                                  music.artist,
-                                  style: const TextStyle(
-                                    fontSize: 14,
-                                    color: Color.fromARGB(255, 176, 137, 0),
-                                    fontStyle: FontStyle.italic,
-                                  ),
-                                ),
-                              ],
+                    GestureDetector(
+                      onTap: () => _playSong(music), // Play the song
+                      child: Container(
+                        height: 80,
+                        color: const Color.fromARGB(255, 29, 34, 73),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 5, horizontal: 10),
+                        child: Row(
+                          children: [
+                            const SizedBox(
+                              width: 80,
+                              height: 80,
                             ),
-                          ),
-                          const SizedBox(width: 10),
-                          IconButton(
-                            icon: const Icon(Icons.play_circle_filled,
-                                color: Color.fromARGB(255, 247, 68, 78)),
-                            onPressed: () {
-                              // Implement the logic to play the song here
-                            },
-                          ),
-                        ],
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    music.title ?? "Unknown Title",
+                                    style: const TextStyle(
+                                      fontSize: 18,
+                                      color: Color.fromARGB(255, 176, 137, 0),
+                                    ),
+                                  ),
+                                  Text(
+                                    music.artist ?? "Unknown Artist",
+                                    style: const TextStyle(
+                                      fontSize: 14,
+                                      color: Color.fromARGB(255, 176, 137, 0),
+                                      fontStyle: FontStyle.italic,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            const SizedBox(width: 10),
+                            IconButton(
+                              icon: const Icon(Icons.play_circle_filled,
+                                  color: Color.fromARGB(255, 247, 68, 78)),
+                              onPressed: () => _playSong(music),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                     const Divider(
