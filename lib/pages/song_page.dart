@@ -109,7 +109,7 @@ class _SongPageState extends State<SongPage> {
         title: const Text(
           'Now Playing',
           style: TextStyle(
-            color: Colors.white,
+            color: Color.fromARGB(255, 234, 229, 229),
           ),
         ),
         centerTitle: true,
@@ -139,7 +139,7 @@ class _SongPageState extends State<SongPage> {
                 style: const TextStyle(
                   fontSize: 24.0,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Color.fromARGB(255, 234, 229, 229),
                 ),
               ),
               const SizedBox(height: 8.0),
@@ -157,20 +157,20 @@ class _SongPageState extends State<SongPage> {
                   IconButton(
                     icon: Icon(
                       isFavorite ? Icons.favorite : Icons.favorite_border,
-                      color: Colors.white,
+                      color: Color.fromARGB(255, 234, 229, 229),
                     ),
                     onPressed: _toggleFavorite,
                   ),
                   IconButton(
-                    icon: const Icon(Icons.shuffle, color: Colors.white),
+                    icon: const Icon(Icons.shuffle, color: Color.fromARGB(255, 234, 229, 229)),
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: const Icon(Icons.replay, color: Colors.white),
+                    icon: const Icon(Icons.replay, color: Color.fromARGB(255, 234, 229, 229)),
                     onPressed: () {},
                   ),
                   IconButton(
-                    icon: const Icon(Icons.playlist_add, color: Colors.white),
+                    icon: const Icon(Icons.playlist_add, color: Color.fromARGB(255, 234, 229, 229)),
                     onPressed: _addToPlaylist,
                   ),
                 ],
@@ -182,7 +182,7 @@ class _SongPageState extends State<SongPage> {
                     widget.lyrics.isEmpty
                         ? 'Lyrics not available'
                         : widget.lyrics,
-                    style: const TextStyle(fontSize: 16.0, color: Colors.white),
+                    style: const TextStyle(fontSize: 16.0, color: Color.fromARGB(255, 234, 229, 229)),
                   ),
                 ),
               ),

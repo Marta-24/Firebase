@@ -126,7 +126,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Playlists', style: TextStyle(color: Colors.white)),
+        title: const Text('Playlists', style: TextStyle(color: Color.fromARGB(255, 234, 229, 229))),
         backgroundColor: const Color.fromARGB(255, 29, 34, 73),
       ),
       backgroundColor: const Color.fromARGB(255, 29, 34, 73),
@@ -147,7 +147,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
                       return ListTile(
                         title: Text(
                           playlists[index],
-                          style: const TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Color.fromARGB(255, 234, 229, 229)),
                         ),
                         onTap: () {
                           _navigateToPlaylistDetail(playlists[index]);
@@ -177,7 +177,7 @@ class _PlaylistPageState extends State<PlaylistPage> {
                 : const Center(
                     child: Text(
                       "No playlists created yet.",
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: Color.fromARGB(255, 234, 229, 229)),
                     ),
                   ),
           ),

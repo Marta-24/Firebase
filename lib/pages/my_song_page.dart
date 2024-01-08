@@ -55,11 +55,11 @@ class _MySongPageState extends State<MySongPage> {
           'My Songs',
           style: TextStyle(
             fontSize: 24,
-            color: Color.fromARGB(255, 176, 137, 0),
+            color: Color.fromARGB(255, 232, 208, 122),
           ),
         ),
         iconTheme: const IconThemeData(
-          color: Color.fromARGB(255, 176, 137, 0),
+          color: Color.fromARGB(255, 232, 208, 122),
         ),
       ),
       body: FutureBuilder<List<Music>>(
@@ -101,14 +101,14 @@ class _MySongPageState extends State<MySongPage> {
                                     music.title,
                                     style: const TextStyle(
                                       fontSize: 18,
-                                      color: Color.fromARGB(255, 176, 137, 0),
+                                      color: Color.fromARGB(255, 232, 208, 122),
                                     ),
                                   ),
                                   Text(
                                     music.artist,
                                     style: const TextStyle(
                                       fontSize: 14,
-                                      color: Color.fromARGB(255, 176, 137, 0),
+                                      color: Color.fromARGB(255, 232, 208, 122),
                                       fontStyle: FontStyle.italic,
                                     ),
                                   ),

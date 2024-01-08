@@ -76,7 +76,7 @@ class _SearchPageState extends State<SearchPage> {
             ElevatedButton(
               onPressed: _searchSong,
               child: _isLoading
-                  ? const CircularProgressIndicator(color: Colors.white)
+                  ? const CircularProgressIndicator(color: Color.fromARGB(255, 234, 229, 229))
                   : const Text('Search'),
             ),
             if (_errorMessage.isNotEmpty)

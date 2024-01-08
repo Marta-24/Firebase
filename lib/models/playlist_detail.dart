@@ -33,7 +33,7 @@ class PlaylistDetailPage extends StatelessWidget {
             itemBuilder: (context, index) {
               return ListTile(
                 title: Text(snapshot.data![index],
-                    style: const TextStyle(color: Colors.white)),
+                    style: const TextStyle(color: Color.fromARGB(255, 234, 229, 229))),
               );
             },
           );

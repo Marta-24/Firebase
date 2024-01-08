@@ -42,7 +42,7 @@ class HomePage extends StatelessWidget {
           onSongTap: (Music music) {
             _navigateToSongPage(context, music);
           },
-          titleColor: const Color.fromARGB(255, 176, 137, 0),
+          titleColor: Color.fromARGB(255, 232, 208, 122),
         ),
         SectionWidget(
           title: 'Recent',
@@ -50,7 +50,7 @@ class HomePage extends StatelessWidget {
           onSongTap: (Music music) {
             _navigateToSongPage(context, music);
           },
-          titleColor: const Color.fromARGB(255, 176, 137, 0),
+          titleColor: Color.fromARGB(255, 232, 208, 122),
         ),
         SectionWidget(
           title: 'Artist - Ed Sheeran',

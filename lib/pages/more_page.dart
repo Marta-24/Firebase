@@ -15,17 +15,17 @@ class MorePage extends StatelessWidget {
           'More',
           style: TextStyle(
             fontSize: 24,
-            color: Color.fromARGB(255, 176, 137, 0),
+            color: Color.fromARGB(255, 232, 208, 122),
           ),
         ),
         iconTheme: const IconThemeData(
-          color: Color.fromARGB(255, 176, 137, 0),
+          color: Color.fromARGB(255, 232, 208, 122),
         ),
       ),
       body: const Center(
         child: Text(
           'More Page',
-          style: TextStyle(fontSize: 24, color: Color.fromARGB(255, 176, 137, 0)),
+          style: TextStyle(fontSize: 24, color: Color.fromARGB(255, 232, 208, 122),),
         ),
       ),
     );

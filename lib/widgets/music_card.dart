@@ -36,7 +36,7 @@ class MusicCard extends StatelessWidget {
                   title,
                   style: const TextStyle(
                     fontSize: 14.0,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 234, 229, 229),
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -44,7 +44,7 @@ class MusicCard extends StatelessWidget {
                   artist,
                   style: const TextStyle(
                     fontSize: 12.0,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 234, 229, 229),
                   ),
                 ),
               ],
