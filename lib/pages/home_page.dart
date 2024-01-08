@@ -4,30 +4,29 @@ import '../models/music.dart';
 import '../pages/song_page.dart';
 
 class HomePage extends StatelessWidget {
+  HomePage({Key? key, required List<Music> recentMusic, required List<Music> trendingMusic, required List<Music> artistMusic}) : super(key: key);
+
+  // Hardcoded lists of songs for each category
   final List<Music> trendingMusic = [
-    Music(title: "Shape of You", artist: "Ed Sheeran"),
-    Music(title: "Blinding Lights", artist: "The Weeknd"),
-    Music(title: "Rockstar", artist: "Post Malone"),
-    Music(title: "Closer", artist: "The Chainsmokers"),
+    Music(title: "Shape of You", artist: "Ed Sheeran", lyrics: ""),
+    Music(title: "Blinding Lights", artist: "The Weeknd", lyrics: ""),
+    Music(title: "Rockstar", artist: "Post Malone", lyrics: ""),
+    Music(title: "Closer", artist: "The Chainsmokers", lyrics: ""),
   ];
 
   final List<Music> recentMusic = [
-    Music(title: "As It Was", artist: "Harry Styles"),
-    Music(title: "Easy On Me", artist: "Adele"),
-    Music(title: "Save Your Tears", artist: "The Weeknd"),
-    Music(title: "Levitating", artist: "Dua Lipa"),
+    Music(title: "As It Was", artist: "Harry Styles", lyrics: ""),
+    Music(title: "Easy On Me", artist: "Adele", lyrics: ""),
+    Music(title: "Save Your Tears", artist: "The Weeknd", lyrics: ""),
+    Music(title: "Levitating", artist: "Dua Lipa", lyrics: ""),
   ];
 
   final List<Music> artistMusic = [
-    Music(title: "Bad Habits", artist: "Ed Sheeran"),
-    Music(title: "Shivers", artist: "Ed Sheeran"),
-    Music(title: "Overpass Graffiti", artist: "Ed Sheeran"),
-    Music(title: "Visiting Hours", artist: "Ed Sheeran"),
+    Music(title: "Bad Habits", artist: "Ed Sheeran", lyrics: ""),
+    Music(title: "Shivers", artist: "Ed Sheeran", lyrics: ""),
+    Music(title: "Overpass Graffiti", artist: "Ed Sheeran", lyrics: ""),
+    Music(title: "Visiting Hours", artist: "Ed Sheeran", lyrics: ""),
   ];
-
-  HomePage({
-    Key? key, required List<Music> trendingMusic, required List<Music> recentMusic, required List<Music> artistMusic,
-  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +67,7 @@ class HomePage extends StatelessWidget {
         builder: (context) => SongPage(
           title: music.title,
           artist: music.artist,
+          // The lyrics are empty here; they should be fetched within the SongPage
           lyrics: '',
         ),
       ),

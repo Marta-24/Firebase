@@ -24,7 +24,7 @@ class _MusicAppState extends State<MusicApp> {
     4,
     (index) => Music(
       title: "Song ${index + 1}",
-      artist: "Artist ${index + 1}",
+      artist: "Artist ${index + 1}", lyrics: '',
     ),
   );
 
@@ -32,7 +32,7 @@ class _MusicAppState extends State<MusicApp> {
     4,
     (index) => Music(
       title: "Song ${index + 5}",
-      artist: "Artist ${index + 5}",
+      artist: "Artist ${index + 5}", lyrics: '',
     ),
   );
 
@@ -40,7 +40,7 @@ class _MusicAppState extends State<MusicApp> {
     2,
     (index) => Music(
       title: "Song ${index + 1}",
-      artist: "Artist",
+      artist: "Artist", lyrics: '',
     ),
   );
 

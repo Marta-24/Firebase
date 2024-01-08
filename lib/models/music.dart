@@ -4,6 +4,6 @@ class Music {
 
   Music({
     required this.title,
-    required this.artist,
+    required this.artist, required String lyrics,
   });
 }
