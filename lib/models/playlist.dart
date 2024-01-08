@@ -1,18 +1,16 @@
-import 'music.dart';
-
 class Playlist {
   String name;
-  List<Music> songs;
+  List<String> songTitles;
 
-  Playlist({required this.name, required this.songs});
+  Playlist(this.name, this.songTitles);
 
-  void addSong(Music song) {
-    if (!songs.contains(song)) {
-      songs.add(song);
+  void addSong(String songTitle) {
+    if (!songTitles.contains(songTitle)) {
+      songTitles.add(songTitle);
     }
   }
 
-  void removeSong(Music song) {
-    songs.remove(song);
+  void removeSong(String songTitle) {
+    songTitles.remove(songTitle);
   }
 }

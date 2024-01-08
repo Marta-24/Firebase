@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:music_app/models/playlist_detail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PlaylistPage extends StatefulWidget {
@@ -138,6 +139,15 @@ class _PlaylistPageState extends State<PlaylistPage> {
                           playlists[index],
                           style: const TextStyle(color: Colors.white),
                         ),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PlaylistDetailPage(
+                                  playlistName: playlists[index]),
+                            ),
+                          );
+                        },
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [

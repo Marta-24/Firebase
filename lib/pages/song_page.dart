@@ -93,9 +93,9 @@ class _SongPageState extends State<SongPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 29, 34, 73),
-        title: const Text(
+        title: Text(
           'Now Playing',
-          style: TextStyle(
+          style: const TextStyle(
             color: Colors.white,
           ),
         ),
