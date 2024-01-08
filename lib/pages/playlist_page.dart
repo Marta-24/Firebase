@@ -6,11 +6,12 @@ class PlaylistPage extends StatefulWidget {
   const PlaylistPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _PlaylistPageState createState() => _PlaylistPageState();
 }
 
 class _PlaylistPageState extends State<PlaylistPage> {
-  List<String> playlists = []; // List to hold playlist names
+  List<String> playlists = [];
 
   @override
   void initState() {
@@ -112,7 +113,6 @@ class _PlaylistPageState extends State<PlaylistPage> {
     );
   }
 
-  // Function to navigate to PlaylistDetailPage when a playlist is pressed
   void _navigateToPlaylistDetail(String playlistName) {
     Navigator.push(
       context,
@@ -150,7 +150,6 @@ class _PlaylistPageState extends State<PlaylistPage> {
                           style: const TextStyle(color: Colors.white),
                         ),
                         onTap: () {
-                          // Navigate to PlaylistDetailPage
                           _navigateToPlaylistDetail(playlists[index]);
                         },
                         trailing: Row(

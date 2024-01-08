@@ -7,6 +7,7 @@ class MySongPage extends StatefulWidget {
   const MySongPage({Key? key}) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _MySongPageState createState() => _MySongPageState();
 }
 
@@ -35,8 +36,8 @@ class _MySongPageState extends State<MySongPage> {
     Navigator.of(context).push(
       MaterialPageRoute(
         builder: (context) => SongPage(
-          title: music.title ?? "Unknown Title",
-          artist: music.artist ?? "Unknown Artist",
+          title: music.title,
+          artist: music.artist,
           lyrics: music.lyrics ?? "",
         ),
       ),
@@ -78,7 +79,7 @@ class _MySongPageState extends State<MySongPage> {
                 return Column(
                   children: [
                     GestureDetector(
-                      onTap: () => _playSong(music), // Play the song
+                      onTap: () => _playSong(music),
                       child: Container(
                         height: 80,
                         color: const Color.fromARGB(255, 29, 34, 73),
@@ -97,14 +98,14 @@ class _MySongPageState extends State<MySongPage> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    music.title ?? "Unknown Title",
+                                    music.title,
                                     style: const TextStyle(
                                       fontSize: 18,
                                       color: Color.fromARGB(255, 176, 137, 0),
                                     ),
                                   ),
                                   Text(
-                                    music.artist ?? "Unknown Artist",
+                                    music.artist,
                                     style: const TextStyle(
                                       fontSize: 14,
                                       color: Color.fromARGB(255, 176, 137, 0),

@@ -36,6 +36,7 @@ class _SearchPageState extends State<SearchPage> {
         _artistController.text,
         _songController.text,
       );
+      // ignore: use_build_context_synchronously
       Navigator.of(context).push(
         MaterialPageRoute(
           builder: (context) => SongPage(

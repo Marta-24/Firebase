@@ -14,6 +14,7 @@ class SongPage extends StatefulWidget {
   }) : super(key: key);
 
   @override
+  // ignore: library_private_types_in_public_api
   _SongPageState createState() => _SongPageState();
 }
 
@@ -46,15 +47,16 @@ class _SongPageState extends State<SongPage> {
     final playlists = prefs.getStringList('playlists') ?? [];
 
     if (playlists.isEmpty) {
+      // ignore: use_build_context_synchronously
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('No Playlists Available'),
-            content: Text('You do not have any playlists to add this song to.'),
+            title: const Text('No Playlists Available'),
+            content: const Text('You do not have any playlists to add this song to.'),
             actions: <Widget>[
               TextButton(
-                child: Text('OK'),
+                child: const Text('OK'),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -66,11 +68,12 @@ class _SongPageState extends State<SongPage> {
       return;
     }
 
+    // ignore: use_build_context_synchronously
     showDialog(
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Add to Playlist'),
+          title: const Text('Add to Playlist'),
           content: SingleChildScrollView(
             child: ListBody(
               children: playlists.map((playlist) {
@@ -103,9 +106,9 @@ class _SongPageState extends State<SongPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 29, 34, 73),
-        title: Text(
+        title: const Text(
           'Now Playing',
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
           ),
         ),
@@ -122,8 +125,8 @@ class _SongPageState extends State<SongPage> {
               Container(
                 height: 200.0,
                 width: 200.0,
-                decoration: BoxDecoration(
-                  color: Colors.yellow, // Placeholder for album art
+                decoration: const BoxDecoration(
+                  color: Colors.yellow,
                   image: DecorationImage(
                     image: NetworkImage('URL of album art if available'),
                     fit: BoxFit.cover,
