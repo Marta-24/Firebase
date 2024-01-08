@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:music_app/models/playlist_detail.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../models/playlist_detail.dart';
 
 class PlaylistPage extends StatefulWidget {
   const PlaylistPage({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class PlaylistPage extends StatefulWidget {
 }
 
 class _PlaylistPageState extends State<PlaylistPage> {
-  List<String> playlists = [];
+  List<String> playlists = []; // List to hold playlist names
 
   @override
   void initState() {
@@ -112,6 +112,16 @@ class _PlaylistPageState extends State<PlaylistPage> {
     );
   }
 
+  // Function to navigate to PlaylistDetailPage when a playlist is pressed
+  void _navigateToPlaylistDetail(String playlistName) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => PlaylistDetailPage(playlistName: playlistName),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -140,13 +150,8 @@ class _PlaylistPageState extends State<PlaylistPage> {
                           style: const TextStyle(color: Colors.white),
                         ),
                         onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => PlaylistDetailPage(
-                                  playlistName: playlists[index]),
-                            ),
-                          );
+                          // Navigate to PlaylistDetailPage
+                          _navigateToPlaylistDetail(playlists[index]);
                         },
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,

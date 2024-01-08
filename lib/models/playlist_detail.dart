@@ -6,8 +6,9 @@ class PlaylistDetailPage extends StatelessWidget {
 
   PlaylistDetailPage({Key? key, required this.playlistName}) : super(key: key);
 
-  Future<List<String>> _getSongsFromPlaylist(String playlistName) async {
+  Future<List<String>> _loadPlaylistSongs() async {
     final prefs = await SharedPreferences.getInstance();
+    // Fetching the list of song titles from SharedPreferences
     return prefs.getStringList(playlistName) ?? [];
   }
 
@@ -20,22 +21,21 @@ class PlaylistDetailPage extends StatelessWidget {
       ),
       backgroundColor: const Color.fromARGB(255, 29, 34, 73),
       body: FutureBuilder<List<String>>(
-        future: _getSongsFromPlaylist(playlistName),
+        future: _loadPlaylistSongs(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return Center(child: CircularProgressIndicator());
           }
           if (!snapshot.hasData || snapshot.data!.isEmpty) {
-            return const Center(child: Text('No songs in this playlist'));
+            return Center(child: Text('No songs in this playlist.'));
           }
           return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context, index) {
               return ListTile(
-                title: Text(
-                  snapshot.data![index],
-                  style: const TextStyle(color: Colors.white),
-                ),
+                title: Text(snapshot.data![index],
+                    style: TextStyle(color: Colors.white)),
+                // Additional functionality like playing the song can be added here
               );
             },
           );

@@ -77,6 +77,7 @@ class _SongPageState extends State<SongPage> {
                 return ListTile(
                   title: Text(playlist),
                   onTap: () {
+                    _addSongToPlaylist(playlist, widget.title);
                     Navigator.of(context).pop();
                   },
                 );
@@ -86,6 +87,15 @@ class _SongPageState extends State<SongPage> {
         );
       },
     );
+  }
+
+  Future<void> _addSongToPlaylist(String playlistName, String songTitle) async {
+    final prefs = await SharedPreferences.getInstance();
+    List<String> currentSongs = prefs.getStringList(playlistName) ?? [];
+    if (!currentSongs.contains(songTitle)) {
+      currentSongs.add(songTitle);
+      await prefs.setStringList(playlistName, currentSongs);
+    }
   }
 
   @override
@@ -112,7 +122,13 @@ class _SongPageState extends State<SongPage> {
               Container(
                 height: 200.0,
                 width: 200.0,
-                color: Colors.yellow,
+                decoration: BoxDecoration(
+                  color: Colors.yellow, // Placeholder for album art
+                  image: DecorationImage(
+                    image: NetworkImage('URL of album art if available'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               const SizedBox(height: 16.0),
               Text(
